@@ -68,7 +68,6 @@ public class Window extends JPanel implements ActionListener{
 		// checks diagonals
 		for(int i = 0; i < 3; i++){
 			sum += Run.input.xoLoc[i][i];
-			System.out.println(sum);
 		}
 		if(sum == 3){
 			xDidWin = true;
