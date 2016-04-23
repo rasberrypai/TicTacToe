@@ -18,6 +18,7 @@ public class Run extends JFrame {
 	public static Window win = new Window();
 	public static int turn = 1;
 	public static int location = 0;
+	public static String mode = null;
 	public static ArrayList<Token> tok = new ArrayList<Token>();
 	public static KeyInputHandler input = new KeyInputHandler();
 	public Run() {

@@ -33,12 +33,20 @@ public class Window extends JPanel implements ActionListener{
         timer = new Timer(DELAY, this);
 			timer.start();
 	}
+	private void choices(Graphics g){
+		g.setColor(Color.white);
+		g.setFont(new Font("Comic Sans MS", Font.PLAIN, 30)); 
+		g.drawString("Two Players", 75, 100);
+		g.drawLine(0, 166, 333, 166);
+		g.drawLine(0, 167, 333, 167);
+		g.setFont(new Font("Comic Sans MS", Font.PLAIN, 30)); 
+		g.drawString("Computer", 90, 250);
+	}
 	private void add(){
-		sum = 0;
 		for(int ii = 0; ii < 3; ii ++){	
+			//checks rows
 			for(int i = 0; i < 3; i++){
 				sum += Run.input.xoLoc[i][ii];
-				System.out.println(sum);
 			}
 			if(sum == 3){
 				xDidWin = true;
@@ -46,9 +54,9 @@ public class Window extends JPanel implements ActionListener{
 				oDidWin = true;
 			}
 			sum = 0;
+			//checks column
 			for(int i = 0; i < 3; i++){
 				sum += Run.input.xoLoc[ii][i];
-				System.out.println(sum);
 			}
 			if(sum == 3){
 				xDidWin = true;
@@ -57,6 +65,7 @@ public class Window extends JPanel implements ActionListener{
 			}
 			sum = 0;
 		}
+		// checks diagonals
 		for(int i = 0; i < 3; i++){
 			sum += Run.input.xoLoc[i][i];
 			System.out.println(sum);
@@ -78,7 +87,7 @@ public class Window extends JPanel implements ActionListener{
 		}
 	}
 	private void drawAll(Graphics g){
-		g.setColor(Color.white);
+		g.setColor(Color.white);	
 		if(oDidWin || xDidWin){
 			won(g);
 		} else {
@@ -87,12 +96,15 @@ public class Window extends JPanel implements ActionListener{
 				Run.tok.get(i).chaR(g);
 			}
 		}
-		
 	}
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		drawAll(g);
+		if(Run.mode == null){
+			choices(g);
+		} else {
+			drawAll(g);
+		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
