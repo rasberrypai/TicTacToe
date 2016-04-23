@@ -36,6 +36,8 @@ public class Run extends JFrame {
     
 
     public static void main(String[] args) {
+    	
+    	System.out.println("oh my");
         
         EventQueue.invokeLater(new Runnable() {
             @Override

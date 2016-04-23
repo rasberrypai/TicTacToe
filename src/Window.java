@@ -41,7 +41,7 @@ public class Window extends JPanel implements ActionListener{
 		g.drawLine(0, 167, 333, 167);
 		g.setFont(new Font("Comic Sans MS", Font.PLAIN, 30)); 
 		g.drawString("Computer", 90, 250);
-	}
+	}		
 	private void add(){
 		for(int ii = 0; ii < 3; ii ++){	
 			//checks rows
