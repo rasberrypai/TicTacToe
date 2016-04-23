@@ -16,12 +16,13 @@ public class Run extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	public static Window win = new Window();
-	public static int turn = 2;
+	public static int turn = 1;
 	public static int location = 0;
 	public static ArrayList<Token> tok = new ArrayList<Token>();
+	public static KeyInputHandler input = new KeyInputHandler();
 	public Run() {
         add(win);
-        addMouseListener(new KeyInputHandler());
+        addMouseListener(input);
         
         setResizable(false);
         pack();

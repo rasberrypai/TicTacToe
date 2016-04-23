@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -20,6 +21,9 @@ public class Window extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private int x = 5;
 	private int y = 5;
+	private boolean xDidWin = false;
+	private boolean oDidWin = false;
+	private int sum = 0;
 	private int dimensions = 333;
 	private final int DELAY = 50; // make this higher if you want it to be slower
 	private Timer timer;
@@ -29,15 +33,50 @@ public class Window extends JPanel implements ActionListener{
         timer = new Timer(DELAY, this);
 			timer.start();
 	}
+	private void addRC(){
+		for(int ii = 0; ii < 3; ii ++){	
+			for(int i = 0; i < 3; i++){
+				sum += Run.input.xoLoc[i][ii];
+				System.out.println(sum);
+			}
+			if(sum == 3){
+				xDidWin = true;
+			} else if(sum == 30){
+				oDidWin = false;
+			}
+			sum = 0;
+			for(int i = 0; i < 3; i++){
+				sum += Run.input.xoLoc[ii][i];
+				System.out.println(sum);
+			}
+			if(sum == 3){
+				xDidWin = true;
+			} else if(sum == 12){
+				oDidWin = false;
+			}
+			sum = 0;
+		}
+	}
 	private void won(Graphics g){
-		
+		if(xDidWin){
+			g.setFont(new Font("Comic Sans MS", Font.PLAIN, 30)); 
+			g.drawString("Player One Won", 50, 150);
+		} else if(oDidWin){
+			g.setFont(new Font("Comic Sans MS", Font.PLAIN, 30)); 
+			g.drawString("Player Two Won", 111, 111);
+		}
 	}
 	private void drawAll(Graphics g){
-		board(g);
-		for(int i = 0; i < Run.tok.size(); i++) {
-			Run.tok.get(i).chaR(g);
+		g.setColor(Color.white);
+		if(oDidWin || xDidWin){
+			won(g);
+		} else {
+			board(g);
+			for(int i = 0; i < Run.tok.size(); i++) {
+				Run.tok.get(i).chaR(g);
+			}
 		}
-		won(g);
+		
 	}
 	@Override
 	public void paintComponent(Graphics g) {
@@ -47,10 +86,11 @@ public class Window extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		addRC();
 		repaint();
 	}
 	private void board(Graphics g){
-		g.setColor(Color.white);
+		
 		g.fillRect(111, 8, 5, 320);
 		g.fillRect(222, 8, 5, 320);
 		g.fillRect(8, 111, 320, 5);
