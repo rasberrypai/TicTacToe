@@ -33,7 +33,8 @@ public class Window extends JPanel implements ActionListener{
         timer = new Timer(DELAY, this);
 			timer.start();
 	}
-	private void addRC(){
+	private void add(){
+		sum = 0;
 		for(int ii = 0; ii < 3; ii ++){	
 			for(int i = 0; i < 3; i++){
 				sum += Run.input.xoLoc[i][ii];
@@ -41,8 +42,8 @@ public class Window extends JPanel implements ActionListener{
 			}
 			if(sum == 3){
 				xDidWin = true;
-			} else if(sum == 30){
-				oDidWin = false;
+			} else if(sum == 12){
+				oDidWin = true;
 			}
 			sum = 0;
 			for(int i = 0; i < 3; i++){
@@ -52,10 +53,20 @@ public class Window extends JPanel implements ActionListener{
 			if(sum == 3){
 				xDidWin = true;
 			} else if(sum == 12){
-				oDidWin = false;
+				oDidWin = true;
 			}
 			sum = 0;
 		}
+		for(int i = 0; i < 3; i++){
+			sum += Run.input.xoLoc[i][i];
+			System.out.println(sum);
+		}
+		if(sum == 3){
+			xDidWin = true;
+		} else if(sum == 12){
+			oDidWin = true;
+		}
+		sum = 0;
 	}
 	private void won(Graphics g){
 		if(xDidWin){
@@ -63,7 +74,7 @@ public class Window extends JPanel implements ActionListener{
 			g.drawString("Player One Won", 50, 150);
 		} else if(oDidWin){
 			g.setFont(new Font("Comic Sans MS", Font.PLAIN, 30)); 
-			g.drawString("Player Two Won", 111, 111);
+			g.drawString("Player Two Won", 50, 150);
 		}
 	}
 	private void drawAll(Graphics g){
@@ -86,7 +97,7 @@ public class Window extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		addRC();
+		add();
 		repaint();
 	}
 	private void board(Graphics g){
