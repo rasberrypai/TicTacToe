@@ -1,11 +1,10 @@
 
 public class CPU {
-	private int finLoc = Run.finCpuLoc;
 	private int sum;
 	private boolean xDidWin;
 	private boolean oDidWin;
 	private byte[][] tempLoc = Run.input.xoLoc;
-	private byte[][] tempPerc;
+	private byte[][] tempPerc = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
 	private int points;
 	private int turn = 1;
 	private int choice;
@@ -34,8 +33,9 @@ public class CPU {
 					} else if(turn == 2){
 						turn--;
 					}
+					tempPerc[i][ii] = (byte) points;
 				}
-				tempPerc[i][ii] = (byte) points;
+				
 			}
 		}
 	}

@@ -5,15 +5,7 @@ import java.util.Arrays;
 public class KeyInputHandler extends MouseAdapter {
 	private int mouseX;
 	private int mouseY;
-	/*public boolean one = false;
-	public boolean two = false;
-	public boolean three = false;
-	public boolean four = false;
-	public boolean five = false;
-	public boolean six = false;
-	public boolean seven = false;
-	public boolean eight = false;
-	public boolean nine = false; */
+	
 	public byte[][] xoLoc = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
 	
 	public void mouseClicked(MouseEvent e){
