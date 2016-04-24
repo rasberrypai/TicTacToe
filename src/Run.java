@@ -35,10 +35,7 @@ public class Run extends JFrame {
     }
     
 
-    public static void main(String[] args) {
-    	
-    	System.out.println("oh my");
-        
+    public static void main(String[] args) {     
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {                

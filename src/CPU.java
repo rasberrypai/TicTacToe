@@ -8,12 +8,19 @@ public class CPU {
 	private byte[][] tempPerc;
 	private int points;
 	private int turn = 1;
+	private int choice;
 	public CPU(){
-		
+		calc();
+		chooseHigh();
 	}
 	private void chooseHigh(){
-		for( int i = 0; i < tempPerc.length; i++){
-			
+		for( int ii = 0; ii < 3; ii++){
+			for(int i = 0; i < 3; ii++){
+				if(choice < tempPerc[i][ii]){
+					choice = tempPerc[i][ii];
+					Run.finCpuLoc = (i+1)*(i+1);
+				}
+			}
 		}
 	}
 	public void calc(){
@@ -34,9 +41,9 @@ public class CPU {
 	}
 	public void canWin(){
 		cpuAdd();
-		if(xDidWin){
+		if(xDidWin && turn == 1){
 			points-=10;
-		} else if(oDidWin){
+		} else if(oDidWin && turn == 2){
 			points+=10;
 		}
 	}
