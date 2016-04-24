@@ -28,20 +28,20 @@ public class CPU {
 					if(tempLoc[i][ii] == 0){
 						tempLoc[i][ii] = (byte)turn;
 						canWin();
-						if(turn == 2){
-							turn++;
+						if(turn == 4){
+							turn=1;
 						} else if(turn == 1){
-							turn--;
+							turn=4;
 						}
 						for(int dii = 0; dii < 3; dii++){
 							for( int di = 0; di < 3; di++){
 								if(tempLoc[di][dii] == 0){
 									tempLoc[di][dii] = (byte)turn;
 									canWin();
-									if(turn == 2){
-										turn++;
+									if(turn == 4){
+										turn=1;
 									} else if(turn == 1){
-										turn--;
+										turn=4;
 									}
 								}
 							}
@@ -49,6 +49,7 @@ public class CPU {
 						System.out.println(i);
 						System.out.println(ii);
 						System.out.println(turn);
+						System.out.println(points);
 						tempPerc[i][ii] = (byte) points;
 						points = 0;
 					}
