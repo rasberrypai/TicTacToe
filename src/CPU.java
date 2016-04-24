@@ -14,7 +14,7 @@ public class CPU {
 	}
 	private void chooseHigh(){
 		for( int ii = 0; ii < 3; ii++){
-			for(int i = 0; i < 3; ii++){
+			for(int i = 0; i < 3; i++){
 				if(choice < tempPerc[i][ii]){
 					choice = tempPerc[i][ii];
 					Run.finCpuLoc = (i+1)*(i+1);
