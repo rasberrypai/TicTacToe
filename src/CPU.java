@@ -4,7 +4,7 @@ public class CPU {
 	private boolean xDidWin;
 	private boolean oDidWin;
 	private byte[][] tempLoc = Run.input.xoLoc;
-	private byte[][] tempPerc = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+	private int[][] tempPerc = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
 	private int points;
 	private int turn = 1;
 	private int choice;
@@ -17,7 +17,31 @@ public class CPU {
 			for(int i = 0; i < 3; i++){
 				if(choice < tempPerc[i][ii]){
 					choice = tempPerc[i][ii];
-					Run.finCpuLoc = (i+1)*(ii+1);
+				}
+			}
+		}
+		for( int ii = 0; ii < 3; ii++){
+			for(int i = 0; i < 3; i++){
+				if(choice == tempPerc[i][ii]){
+					if(i == 0 && ii == 0){
+						Run.finCpuLoc = 1;
+					} else if(i == 1 && ii == 0){
+						Run.finCpuLoc = 2;
+					} else if(i == 2 && ii == 0){
+						Run.finCpuLoc = 3;
+					} else if(i == 0 && ii == 1){
+						Run.finCpuLoc = 4;
+					} else if(i == 1 && ii == 1){
+						Run.finCpuLoc = 5;
+					} else if(i == 2 && ii == 1){
+						Run.finCpuLoc = 6;
+					} else if(i == 0 && ii == 2){
+						Run.finCpuLoc = 7;
+					} else if(i == 1 && ii == 2){
+						Run.finCpuLoc = 8;
+					} else if(i == 2 && ii == 2){
+						Run.finCpuLoc = 9;
+					}
 				}
 			}
 		}
@@ -63,20 +87,20 @@ public class CPU {
 															} else if(turn == 1){
 																turn=4;
 															}
-															for(int fiveii = 0; fiveii < 3; fiveii++){
-																for( int fivei = 0; fivei < 3; fivei++){
-																	if(tempLoc[fivei][fiveii] == 0){
-																		tempLoc[fivei][fiveii] = (byte)turn;
+															for(int vii = 0; vii < 3; vii++){
+																for( int vi = 0; vi < 3; vi++){
+																	if(tempLoc[vi][vii] == 0){
+																		tempLoc[vi][vii] = (byte)turn;
 																		canWin();
 																		if(turn == 4){
 																			turn=1;
 																		} else if(turn == 1){
 																			turn=4;
 																		}
-																		for(int sxii = 0; sxii < 3; sxii++){
-																			for( int sxi = 0; sxi < 3; sxi++){
-																				if(tempLoc[sxi][sxii] == 0){
-																					tempLoc[sxi][sxii] = (byte)turn;
+																		for(int xii = 0; xii < 3; xii++){
+																			for( int xi = 0; xi < 3; xi++){
+																				if(tempLoc[xi][xii] == 0){
+																					tempLoc[xi][xii] = (byte)turn;
 																					canWin();
 																					if(turn == 4){
 																						turn=1;
@@ -103,33 +127,37 @@ public class CPU {
 																											} else if(turn == 1){
 																												turn=4;
 																											}
+																											tempLoc[ei][eii] = 0;
 																										}
 																									}
 																								}
+																								tempLoc[si][sii] = 0;
 																							}
 																						}
 																					}
+																					tempLoc[xi][xii] = 0;
 																				}
 																			}
 																		}
+																		tempLoc[vi][vii] = 0;
 																	}
 																}
 															}
+															tempLoc[fi][fii] = 0;
 														}
 													}
 												}
+												tempLoc[ti][tii] = 0;
 											}
 										}
 									}
+									tempLoc[di][dii] = 0;
 								}
 							}
 						}
-						System.out.println(i);
-						System.out.println(ii);
-						System.out.println(turn);
-						System.out.println(points);
-						tempPerc[i][ii] = (byte) points;
+						tempPerc[i][ii] = points;
 						points = 0;
+						tempLoc[i][ii] = 0;
 					}
 					
 				}
@@ -166,10 +194,19 @@ public class CPU {
 			}
 			sum = 0;
 		}
-		// checks diagonals
+		// checks diagonal '\'
 		for(int i = 0; i < 3; i++){
 			sum += tempLoc[i][i];
 		}
+		if(sum == 3){
+			xDidWin = true;
+		} else if(sum == 12){
+			oDidWin = true;
+		}
+		sum = 0;
+		sum += tempLoc[0][2];
+		sum += tempLoc[1][1];
+		sum += tempLoc[2][0];
 		if(sum == 3){
 			xDidWin = true;
 		} else if(sum == 12){

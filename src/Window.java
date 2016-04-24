@@ -75,6 +75,15 @@ public class Window extends JPanel implements ActionListener{
 			oDidWin = true;
 		}
 		sum = 0;
+		sum += Run.input.xoLoc[0][2];
+		sum += Run.input.xoLoc[1][1];
+		sum += Run.input.xoLoc[2][0];
+		if(sum == 3){
+			xDidWin = true;
+		} else if(sum == 12){
+			oDidWin = true;
+		}
+		sum = 0;
 	}
 	private void won(Graphics g){
 		if(xDidWin){
