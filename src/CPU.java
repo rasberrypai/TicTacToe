@@ -17,35 +17,50 @@ public class CPU {
 			for(int i = 0; i < 3; i++){
 				if(choice < tempPerc[i][ii]){
 					choice = tempPerc[i][ii];
-					Run.finCpuLoc = (i+1)*(i+1);
+					Run.finCpuLoc = (i+1)*(ii+1);
 				}
 			}
 		}
 	}
 	public void calc(){
-		for(int iii = 0; iii < 8; iii++){
 			for(int ii = 0; ii < 3; ii++){
 				for( int i = 0; i < 3; i++){
 					if(tempLoc[i][ii] == 0){
 						tempLoc[i][ii] = (byte)turn;
 						canWin();
-						if(turn == 1){
+						if(turn == 2){
 							turn++;
-						} else if(turn == 2){
+						} else if(turn == 1){
 							turn--;
 						}
+						for(int dii = 0; dii < 3; dii++){
+							for( int di = 0; di < 3; di++){
+								if(tempLoc[di][dii] == 0){
+									tempLoc[di][dii] = (byte)turn;
+									canWin();
+									if(turn == 2){
+										turn++;
+									} else if(turn == 1){
+										turn--;
+									}
+								}
+							}
+						}
+						System.out.println(i);
+						System.out.println(ii);
+						System.out.println(turn);
 						tempPerc[i][ii] = (byte) points;
+						points = 0;
 					}
 					
 				}
 			}
-		}
 	}
 	public void canWin(){
 		cpuAdd();
-		if(xDidWin && turn == 1){
+		if(xDidWin && turn == 2){
 			points-=10;
-		} else if(oDidWin && turn == 2){
+		} else if(oDidWin && turn == 1){
 			points+=10;
 		}
 	}
