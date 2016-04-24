@@ -23,19 +23,21 @@ public class CPU {
 		}
 	}
 	public void calc(){
-		for(int ii = 0; ii < 3; ii++){
-			for( int i = 0; i < 3; i++){
-				if(tempLoc[i][ii] == 0){
-					tempLoc[i][ii] = (byte)turn;
-					canWin();
-					if(turn == 1){
-						turn++;
-					} else if(turn == 2){
-						turn--;
+		for(int iii = 0; iii < 8; iii++){
+			for(int ii = 0; ii < 3; ii++){
+				for( int i = 0; i < 3; i++){
+					if(tempLoc[i][ii] == 0){
+						tempLoc[i][ii] = (byte)turn;
+						canWin();
+						if(turn == 1){
+							turn++;
+						} else if(turn == 2){
+							turn--;
+						}
+						tempPerc[i][ii] = (byte) points;
 					}
-					tempPerc[i][ii] = (byte) points;
+					
 				}
-				
 			}
 		}
 	}
