@@ -24,7 +24,7 @@ public class KeyInputHandler extends MouseAdapter {
 		} else if (Run.mode == "cpu" && Run.turn % 2 == 0){
 			mouseX = 334;
 			mouseY = 334;
-			new CPU();
+			new Level2CPU();
 			check();
 		}
 	}
