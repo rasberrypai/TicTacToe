@@ -4,47 +4,71 @@ public class CPU {
 	private boolean xDidWin;
 	private boolean oDidWin;
 	private byte[][] tempLoc = Run.input.xoLoc;
-	private int[][] tempPerc = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+	private int constant = -999999;
+	private int[][] tempPerc = {{constant, constant, constant}, {constant, constant, constant}, {constant, constant, constant}};
 	private int points;
 	private int turn = 1;
-	private int choice;
+	private int choice = -999998;
 	public CPU(){
-		calc();
 		chooseHigh();
 	}
 	private void chooseHigh(){
+		calc();
 		for( int ii = 0; ii < 3; ii++){
 			for(int i = 0; i < 3; i++){
 				if(choice < tempPerc[i][ii]){
 					choice = tempPerc[i][ii];
 				}
+				System.out.println(tempPerc[i][ii]);
 			}
 		}
+		System.out.println("");
 		for( int ii = 0; ii < 3; ii++){
 			for(int i = 0; i < 3; i++){
-				if(choice == tempPerc[i][ii]){
-					if(i == 0 && ii == 0){
-						Run.finCpuLoc = 1;
-					} else if(i == 1 && ii == 0){
-						Run.finCpuLoc = 2;
-					} else if(i == 2 && ii == 0){
-						Run.finCpuLoc = 3;
-					} else if(i == 0 && ii == 1){
-						Run.finCpuLoc = 4;
-					} else if(i == 1 && ii == 1){
-						Run.finCpuLoc = 5;
-					} else if(i == 2 && ii == 1){
-						Run.finCpuLoc = 6;
-					} else if(i == 0 && ii == 2){
-						Run.finCpuLoc = 7;
-					} else if(i == 1 && ii == 2){
-						Run.finCpuLoc = 8;
-					} else if(i == 2 && ii == 2){
-						Run.finCpuLoc = 9;
+				if(tempLoc[i][ii] == 0){
+					if(choice == tempPerc[i][ii]){
+						if(i == 0 && ii == 0){
+							Run.finCpuLoc = 1;
+							i=3;
+							ii=3;
+						} else if(i == 1 && ii == 0){
+							Run.finCpuLoc = 2;
+							i=3;
+							ii=3;
+						} else if(i == 2 && ii == 0){
+							Run.finCpuLoc = 3;
+							i=3;
+							ii=3;
+						} else if(i == 0 && ii == 1){
+							Run.finCpuLoc = 4;
+							i=3;
+							ii=3;
+						} else if(i == 1 && ii == 1){
+							Run.finCpuLoc = 5;
+							i=3;
+							ii=3;
+						} else if(i == 2 && ii == 1){
+							Run.finCpuLoc = 6;
+							i=3;
+							ii=3;
+						} else if(i == 0 && ii == 2){
+							Run.finCpuLoc = 7;
+							i=3;
+							ii=3;
+						} else if(i == 1 && ii == 2){
+							Run.finCpuLoc = 8;
+							i=3;
+							ii=3;
+						} else if(i == 2 && ii == 2){
+							Run.finCpuLoc = 9;
+							i=3;
+							ii=3;
+						}
 					}
 				}
 			}
 		}
+		//System.out.println(Run.finCpuLoc);
 	}
 	public void calc(){
 			for(int ii = 0; ii < 3; ii++){
@@ -165,13 +189,15 @@ public class CPU {
 	}
 	public void canWin(){
 		cpuAdd();
-		if(xDidWin && turn == 2){
-			points-=10;
-		} else if(oDidWin && turn == 1){
+		if(xDidWin){
+			points-=20;
+		} else if(oDidWin){
 			points+=10;
 		}
 	}
 	private void cpuAdd(){
+		xDidWin = false;
+		oDidWin = false;
 		for(int ii = 0; ii < 3; ii ++){	
 			//checks rows
 			for(int i = 0; i < 3; i++){
@@ -179,8 +205,10 @@ public class CPU {
 			}
 			if(sum == 3){
 				xDidWin = true;
+				oDidWin = false;
 			} else if(sum == 12){
 				oDidWin = true;
+				xDidWin = false;
 			}
 			sum = 0;
 			//checks column
@@ -189,8 +217,10 @@ public class CPU {
 			}
 			if(sum == 3){
 				xDidWin = true;
+				oDidWin = false;
 			} else if(sum == 12){
 				oDidWin = true;
+				xDidWin = false;
 			}
 			sum = 0;
 		}
@@ -200,8 +230,10 @@ public class CPU {
 		}
 		if(sum == 3){
 			xDidWin = true;
+			oDidWin = false;
 		} else if(sum == 12){
 			oDidWin = true;
+			xDidWin = false;
 		}
 		sum = 0;
 		sum += tempLoc[0][2];
@@ -209,9 +241,11 @@ public class CPU {
 		sum += tempLoc[2][0];
 		if(sum == 3){
 			xDidWin = true;
+			oDidWin = false;
 		} else if(sum == 12){
 			oDidWin = true;
+			xDidWin = false;
 		}
 		sum = 0;
-	}
+	} 
 }
