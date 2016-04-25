@@ -1,15 +1,17 @@
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
+import java.util.List;
 
 public class KeyInputHandler extends MouseAdapter {
 	private int mouseX;
 	private int mouseY;
-	
+	private int k;
 	public byte[][] xoLoc = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
 	
 	public void mouseClicked(MouseEvent e){
-		if (e.getButton() == MouseEvent.BUTTON1 && Run.mode == null || e.getButton() == MouseEvent.BUTTON1 && Run.mode == "players" || e.getButton() == MouseEvent.BUTTON1 && Run.mode == "cpu" && Run.turn % 2 != 0) {
+		k = e.getButton();
+		if (k == MouseEvent.BUTTON1 && Run.mode == null || e.getButton() == MouseEvent.BUTTON1 && Run.mode == "players" || e.getButton() == MouseEvent.BUTTON1 && Run.mode == "cpu" && Run.turn % 2 != 0) {
 			mouseX = e.getX();
 			mouseY = e.getY();
 			if(Run.mode == null){
@@ -21,7 +23,8 @@ public class KeyInputHandler extends MouseAdapter {
 			} else {
 				check();
 			}
-		} else if (Run.mode == "cpu" && Run.turn % 2 == 0){
+		} 
+		if (Run.mode == "cpu" && Run.turn % 2 == 0){
 			mouseX = 334;
 			mouseY = 334;
 			new Level2CPU();
