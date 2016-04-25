@@ -92,11 +92,14 @@ public class Window extends JPanel implements ActionListener{
 		} else if(oDidWin){
 			g.setFont(new Font("Comic Sans MS", Font.PLAIN, 30)); 
 			g.drawString("Player Two Won", 50, 150);
+		} else if(Run.turn == 10){
+			g.setFont(new Font("Comic Sans MS", Font.PLAIN, 30)); 
+			g.drawString("It's A Draw", 80, 160);
 		}
 	}
 	private void drawAll(Graphics g){
 		g.setColor(Color.white);	
-		if(oDidWin || xDidWin){
+		if(oDidWin || xDidWin || Run.turn == 10){
 			won(g);
 		} else {
 			board(g);

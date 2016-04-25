@@ -1,5 +1,6 @@
 
 public class CPU {
+	// DOES NOT WORK
 	private int sum;
 	private boolean xDidWin;
 	private boolean oDidWin;
@@ -189,9 +190,9 @@ public class CPU {
 	}
 	public void canWin(){
 		cpuAdd();
-		if(xDidWin){
-			points-=20;
-		} else if(oDidWin){
+		if(xDidWin && turn == 1){
+			points-=10;
+		} else if(oDidWin && turn == 4){
 			points+=10;
 		}
 	}
@@ -211,7 +212,9 @@ public class CPU {
 				xDidWin = false;
 			}
 			sum = 0;
+		}
 			//checks column
+		for(int ii = 0; ii < 3; ii ++){	
 			for(int i = 0; i < 3; i++){
 				sum += tempLoc[ii][i];
 			}

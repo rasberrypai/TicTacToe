@@ -62,8 +62,6 @@ public class Level2CPU {
 						check();
 						tempLoc[i][ii] = 0;
 						if(!xCanWin){
-							System.out.println(i);
-							System.out.println(ii);
 							find(i,ii);
 							didWork = true;
 						}
