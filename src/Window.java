@@ -25,6 +25,7 @@ public class Window extends JPanel implements ActionListener{
 	private boolean oDidWin = false;
 	private int sum = 0;
 	private int dimensions = 333;
+	private boolean close = false;
 	private final int DELAY = 50; // make this higher if you want it to be slower
 	private Timer timer;
 	public Window(){
@@ -36,11 +37,12 @@ public class Window extends JPanel implements ActionListener{
 	private void choices(Graphics g){
 		g.setColor(Color.white);
 		g.setFont(new Font("Comic Sans MS", Font.PLAIN, 30)); 
-		g.drawString("Two Players", 75, 100);
-		g.drawLine(0, 166, 333, 166);
-		g.drawLine(0, 167, 333, 167);
+		g.drawString("Two Players", 75, 61);
+		g.drawLine(0, 111, 333, 111);
+		g.drawString("Two Computers", 67, 170);
+		g.drawLine(0, 222, 333, 222);
 		g.setFont(new Font("Comic Sans MS", Font.PLAIN, 30)); 
-		g.drawString("Computer", 90, 250);
+		g.drawString("Computer", 90, 272);
 	}		
 	private void add(){
 		for(int ii = 0; ii < 3; ii ++){	
@@ -101,6 +103,7 @@ public class Window extends JPanel implements ActionListener{
 		g.setColor(Color.white);	
 		if(oDidWin || xDidWin || Run.turn == 10){
 			won(g);
+			close = true;
 		} else {
 			board(g);
 			for(int i = 0; i < Run.tok.size(); i++) {
@@ -115,6 +118,9 @@ public class Window extends JPanel implements ActionListener{
 			choices(g);
 		} else {
 			drawAll(g);
+		}
+		if(close){
+			Run.ex.disable();
 		}
 	}
 	@Override

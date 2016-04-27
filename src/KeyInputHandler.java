@@ -15,15 +15,22 @@ public class KeyInputHandler extends MouseAdapter {
 			mouseX = e.getX();
 			mouseY = e.getY();
 			if(Run.mode == null){
-				if(mouseY >= 0 && mouseY <= 165){
+				if(mouseY >= 0 && mouseY <= 111){
 					Run.mode = "players";
-				} else if(mouseY >= 167 && mouseY <= 333){
+				} else if(mouseY >= 222 && mouseY <= 333){
 					Run.mode = "cpu";
+				} else if(mouseY >= 111 && mouseY <= 222){
+					Run.mode = "twocpu";
 				}
 			} else {
 				check();
 			}
-		} else if (Run.mode == "cpu" && Run.turn % 2 == 0){
+		} else if(Run.mode == "twocpu" && Run.turn % 2 != 0){
+			mouseX = 334;
+			mouseY = 334;
+			new Level2CPU2();
+			check();
+		} else if (Run.mode == "cpu" && Run.turn % 2 == 0 || Run.mode == "twocpu" && Run.turn % 2 == 0){
 			mouseX = 334;
 			mouseY = 334;
 			new Level2CPU();
@@ -31,55 +38,55 @@ public class KeyInputHandler extends MouseAdapter {
 		}
 	}
 	public void check(){
-			if(mouseX >= 0 && mouseX <= 110 && mouseY >= 0 && mouseY <= 110 || Run.finCpuLoc == 1  && Run.turn % 2 == 0){
+			if(mouseX >= 0 && mouseX <= 110 && mouseY >= 0 && mouseY <= 110 || Run.finCpuLoc == 1  && Run.turn % 2 == 0 || Run.finCpuLoc == 1 && Run.mode == "twocpu"){
 				if(xoLoc[0][0] == 0){
 					Run.tok.add(new Token(5, 5, 0, 0));
 					Run.turn++;
 				}
 			}
-			if(mouseX >= 112 && mouseX <= 221 && mouseY >= 0 && mouseY <= 110 || Run.finCpuLoc == 2 && Run.turn % 2 == 0){
+			if(mouseX >= 112 && mouseX <= 221 && mouseY >= 0 && mouseY <= 110 || Run.finCpuLoc == 2 && Run.turn % 2 == 0 || Run.finCpuLoc == 2 && Run.mode == "twocpu"){
 				if(xoLoc[1][0] == 0){
 					Run.tok.add(new Token(116, 5, 1, 0));
 					Run.turn++;	
 				}
 			}
-			if(mouseX >= 223 && mouseX <= 332 && mouseY >= 0 && mouseY <= 110 || Run.finCpuLoc == 3 && Run.turn % 2 == 0){
+			if(mouseX >= 223 && mouseX <= 332 && mouseY >= 0 && mouseY <= 110 || Run.finCpuLoc == 3 && Run.turn % 2 == 0 || Run.finCpuLoc == 3 && Run.mode == "twocpu"){
 				if(xoLoc[2][0] == 0){
 					Run.tok.add(new Token(227, 5, 2, 0));
 					Run.turn++;
 				}
 			}
-			if(mouseX >= 0 && mouseX <= 110 && mouseY >= 112 && mouseY <= 221 || Run.finCpuLoc == 4 && Run.turn % 2 == 0){
+			if(mouseX >= 0 && mouseX <= 110 && mouseY >= 112 && mouseY <= 221 || Run.finCpuLoc == 4 && Run.turn % 2 == 0 || Run.finCpuLoc == 4 && Run.mode == "twocpu"){
 				if(xoLoc[0][1] == 0){
 					Run.tok.add(new Token(5, 116, 0, 1));
 					Run.turn++;
 				}
 			}
-			if(mouseX >= 112 && mouseX <= 221 && mouseY >= 112 && mouseY <= 221 || Run.finCpuLoc == 5 && Run.turn % 2 == 0){
+			if(mouseX >= 112 && mouseX <= 221 && mouseY >= 112 && mouseY <= 221 || Run.finCpuLoc == 5 && Run.turn % 2 == 0 || Run.finCpuLoc == 5 && Run.mode == "twocpu"){
 				if(xoLoc[1][1] == 0){
 					Run.tok.add(new Token(116, 116, 1, 1));
 					Run.turn++;
 				}
 			}
-			if(mouseX >= 223 && mouseX <= 332 && mouseY >= 112 && mouseY <= 221 || Run.finCpuLoc == 6 && Run.turn % 2 == 0){
+			if(mouseX >= 223 && mouseX <= 332 && mouseY >= 112 && mouseY <= 221 || Run.finCpuLoc == 6 && Run.turn % 2 == 0 || Run.finCpuLoc == 6 && Run.mode == "twocpu"){
 				if(xoLoc[2][1] == 0){
 					Run.tok.add(new Token(227, 116, 2, 1));
 					Run.turn++;
 				}
 			}
-			if(mouseX >= 0 && mouseX <= 110 && mouseY >= 223 && mouseY <= 333 || Run.finCpuLoc == 7 && Run.turn % 2 == 0){
+			if(mouseX >= 0 && mouseX <= 110 && mouseY >= 223 && mouseY <= 333 || Run.finCpuLoc == 7 && Run.turn % 2 == 0 || Run.finCpuLoc == 7 && Run.mode == "twocpu"){
 				if(xoLoc[0][2] == 0){
 					Run.tok.add(new Token(5, 227, 0 , 2));
 					Run.turn++;
 				}
 			}
-			if(mouseX >= 112 && mouseX <= 221 && mouseY >= 223 && mouseY <= 333 || Run.finCpuLoc == 8 && Run.turn % 2 == 0){
+			if(mouseX >= 112 && mouseX <= 221 && mouseY >= 223 && mouseY <= 333 || Run.finCpuLoc == 8 && Run.turn % 2 == 0 || Run.finCpuLoc == 8 && Run.mode == "twocpu"){
 				if(xoLoc[1][2] == 0){
 					Run.tok.add(new Token(116, 227, 1, 2));
 					Run.turn++;
 				}
 			}
-			if(mouseX >= 223 && mouseX <= 332 && mouseY >= 223 && mouseY <= 333 || Run.finCpuLoc == 9 && Run.turn % 2 == 0){
+			if(mouseX >= 223 && mouseX <= 332 && mouseY >= 223 && mouseY <= 333 || Run.finCpuLoc == 9 && Run.turn % 2 == 0 || Run.finCpuLoc == 9 && Run.mode == "twocpu"){
 				if(xoLoc[2][2] == 0){
 					Run.tok.add(new Token(227, 227, 2, 2));	
 					Run.turn++;

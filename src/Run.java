@@ -20,6 +20,7 @@ public class Run extends JFrame {
 	public static int location = 0;
 	public static String mode = null;
 	public static int finCpuLoc = 0;
+	public static JFrame ex;
 	public static ArrayList<Token> tok = new ArrayList<Token>();
 	public static KeyInputHandler input = new KeyInputHandler();
 	public Run() {
@@ -39,8 +40,8 @@ public class Run extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {                
-                JFrame ex = new Run();
-                ex.setVisible(true); 
+                ex = new Run();
+                ex.setVisible(true);
             }
         });
     }
